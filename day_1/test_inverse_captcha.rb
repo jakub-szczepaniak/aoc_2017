@@ -23,4 +23,30 @@ class TestInverseCaptcha < MiniTest::Test
   def test_it_is_2_for_circular_input_are_repeated
     assert_equal 2, inverse_captcha([2, 1, 2])
   end
+
+  def test_for_2_element_input_captcha_is_2
+    assert_equal 2, inverse_captcha([1, 1])
+  end
+
+  def test_it_works_for_4_element_input
+    assert_equal 3, inverse_captcha([1, 1, 2, 2])
+  end
+
+  def test_produces_0_for_4_element_input
+    assert_equal 0, inverse_captcha([1, 2, 3, 4])
+  end
+
+  def test_it_works_for_long_circular_input
+    assert_equal 9, inverse_captcha([9, 2, 3, 4, 9])
+  end
+end
+
+class TestInverseCaptchaWithInput < MiniTest::Test
+  def test_for_real_input
+    test_file = File.read('test_input.txt')
+
+    input = test_file.split(//).map(&:to_i)
+
+    assert_equal 1136, inverse_captcha(input)
+  end
 end
