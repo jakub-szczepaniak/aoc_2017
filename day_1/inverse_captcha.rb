@@ -12,12 +12,17 @@ def inverse_captcha(input)
 end
 
 def halfway_captcha(input)
-  fail ArgumentError if input.count == 0 || input.count == 1
+  length = input.count
+  fail ArgumentError if length == 0 || length == 1
   captcha = 0
   input.each_with_index do |item, index|
-    if item == input[(index + (input.count / 2)) % input.count]
+    if item == input[halfway_index(index, length)]
       captcha += item
     end
   end
   captcha
+end
+
+def halfway_index(index, length)
+  (index + (length / 2)) % length
 end
