@@ -16,8 +16,6 @@ def halfway_captcha(input)
   captcha = 0
   input.each_with_index do |item, index|
     if item == input[(index + (input.count / 2)) % input.count]
-      p item
-      p input[(index + (input.count / 2)) % input.count]
       captcha += item
     end
   end

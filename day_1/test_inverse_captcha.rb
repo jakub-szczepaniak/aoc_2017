@@ -49,6 +49,16 @@ class TestInverseCaptchaPart2 < MiniTest::Test
   def test_new_captcha_works_for_example_2
     assert_equal 0, halfway_captcha([1, 2, 2, 1])
   end
+
+  def test_new_captcha_works_for_example_3
+    assert_equal 4, halfway_captcha([1, 2, 3, 4, 2, 5])
+  end
+  def test_new_captcha_works_for_example_4
+    assert_equal 12, halfway_captcha([1, 2, 3, 1, 2, 3])
+  end
+  def test_new_captcha_works_for_example_5
+    assert_equal 4, halfway_captcha([1, 2, 1, 3, 1, 4, 1, 5])
+  end
 end
 
 class TestInverseCaptchaWithInput < MiniTest::Test
@@ -58,5 +68,12 @@ class TestInverseCaptchaWithInput < MiniTest::Test
     input = test_file.split(//).map(&:to_i)
 
     assert_equal 1136, inverse_captcha(input)
+  end
+  def test_part_2_for_real_input
+    test_file = File.read('test_input.txt')
+
+    input = test_file.split(//).map(&:to_i)
+
+    assert_equal 1092, halfway_captcha(input)
   end
 end
