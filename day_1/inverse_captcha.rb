@@ -11,3 +11,15 @@ def inverse_captcha(input)
   captcha
 end
 
+def halfway_captcha(input)
+  fail ArgumentError if input.count == 0 || input.count == 1
+  captcha = 0
+  input.each_with_index do |item, index|
+    if item == input[(index + (input.count / 2)) % input.count]
+      p item
+      p input[(index + (input.count / 2)) % input.count]
+      captcha += item
+    end
+  end
+  captcha
+end

@@ -3,7 +3,7 @@ gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
 require_relative 'inverse_captcha.rb'
 
-class TestInverseCaptcha < MiniTest::Test
+class TestInverseCaptchaPart1 < MiniTest::Test
   def test_raises_argument_error_when_empty_input
     assert_raises(ArgumentError) { inverse_captcha [] }
   end
@@ -38,6 +38,16 @@ class TestInverseCaptcha < MiniTest::Test
 
   def test_it_works_for_long_circular_input
     assert_equal 9, inverse_captcha([9, 2, 3, 4, 9])
+  end
+end
+
+class TestInverseCaptchaPart2 < MiniTest::Test
+  def test_new_captcha_works_for_example_1
+    assert_equal 6, halfway_captcha([1, 2, 1, 2])
+  end
+
+  def test_new_captcha_works_for_example_2
+    assert_equal 0, halfway_captcha([1, 2, 2, 1])
   end
 end
 
